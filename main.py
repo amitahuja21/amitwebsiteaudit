@@ -1,8 +1,6 @@
 """
-The Website Auditor — FINAL VERSION
-Website: scan + display results
-JavaScript: sends data directly to Make.com webhook
-Make.com: handles email + Google Sheets
+The Website Auditor — DEBUG VERSION
+Shows in browser console if Make.com data is being sent
 """
 
 import os
@@ -25,10 +23,6 @@ NAVY = "#0A1A40"
 LIME = "#A3E635"
 YELLOW = "#FACC15"
 WHITE = "#FFFFFF"
-
-# ─────────────────────────────────────────────────────────────────────────
-# SCAN FUNCTION
-# ─────────────────────────────────────────────────────────────────────────
 
 def run_website_scan(url):
     """Run 25-point audit"""
@@ -82,10 +76,6 @@ def run_website_scan(url):
         }
     except Exception as e:
         return {"checks": {}, "passed": 0, "total": 25, "score": 0, "error": str(e)}
-
-# ─────────────────────────────────────────────────────────────────────────
-# HOMEPAGE
-# ─────────────────────────────────────────────────────────────────────────
 
 MAKE_WEBHOOK_URL = "https://hook.eu1.make.com/padspay9db1jptpkckvpxytsm8syyf9r"
 
@@ -143,7 +133,7 @@ footer {{ background:{NAVY}; color:white; text-align:center; padding:2rem; margi
     <h2>Your Scan Results</h2>
     <div class="score-big" id="score">0%</div>
     <div class="passed-text" id="passed">0 / 25</div>
-    <p style="text-align:center;color:{LIME};font-weight:600;">✅ Email will be sent to your inbox</p>
+    <p style="text-align:center;color:{LIME};font-weight:600;">✅ Sending data to Make.com...</p>
     <div class="checks" id="checks"></div>
   </div>
 </div>
@@ -153,7 +143,11 @@ footer {{ background:{NAVY}; color:white; text-align:center; padding:2rem; margi
 <script>
 const MAKE_WEBHOOK = "{MAKE_WEBHOOK_URL}";
 
+console.log("Page loaded. Make.com webhook URL:", MAKE_WEBHOOK);
+
 async function scan() {{
+  console.log("=== SCAN STARTED ===");
+  
   const name = document.getElementById('name').value.trim();
   const email = document.getElementById('email').value.trim();
   const phone = document.getElementById('phone').value.trim();
@@ -162,11 +156,14 @@ async function scan() {{
   const status = document.getElementById('status');
   const btn = event.target;
   
+  console.log("Form values:", {{name, email, phone, website}});
+  
   error.innerHTML = '';
   status.innerHTML = '';
   
   if (!name || !email || !phone || !website) {{
     error.innerHTML = 'Fill all fields';
+    console.log("ERROR: Missing fields");
     return;
   }}
   
@@ -175,23 +172,26 @@ async function scan() {{
   status.innerHTML = '⏳ Please wait...';
   
   try {{
-    // STEP 1: Get scan results from Python backend
+    console.log("Sending to /api/scan...");
     const res = await fetch('/api/scan', {{
       method: 'POST',
       headers: {{'Content-Type': 'application/json'}},
       body: JSON.stringify({{name, email, phone, website}})
     }});
     
+    console.log("Response status:", res.status);
     const data = await res.json();
+    console.log("Response data:", data);
     
     if (!res.ok) {{
       error.innerHTML = 'Error: ' + (data.error || 'Scan failed');
+      console.log("ERROR: API returned error");
       btn.disabled = false;
       btn.textContent = '🚀 SCAN NOW';
       return;
     }}
     
-    // STEP 2: Display results
+    console.log("Displaying results...");
     document.getElementById('score').textContent = data.score + '%';
     document.getElementById('passed').textContent = data.passed + ' / ' + data.total;
     
@@ -206,25 +206,30 @@ async function scan() {{
     }}
     
     document.getElementById('results').classList.add('show');
-    status.innerHTML = '✅ Scan complete!';
     
-    // STEP 3: Send data to Make.com webhook (DIRECTLY from browser)
+    console.log("NOW SENDING TO MAKE.COM...");
     sendToMakecom(name, email, phone, website, data);
+    
+    status.innerHTML = '✅ Scan complete! Email coming soon...';
     
     setTimeout(() => {{
       document.getElementById('results').scrollIntoView({{behavior: 'smooth'}});
     }}, 100);
     
   }} catch (err) {{
+    console.error("CATCH ERROR:", err);
     error.innerHTML = 'Error: ' + err.message;
   }}
   
   btn.disabled = false;
   btn.textContent = '🚀 SCAN NOW';
+  console.log("=== SCAN ENDED ===");
 }}
 
 function sendToMakecom(name, email, phone, website, scanData) {{
-  // Send data DIRECTLY to Make.com webhook from browser
+  console.log("\n=== MAKE.COM SEND START ===");
+  console.log("Function called with:", {{name, email, phone, website}});
+  
   const payload = {{
     timestamp: new Date().toISOString(),
     name: name,
@@ -236,21 +241,29 @@ function sendToMakecom(name, email, phone, website, scanData) {{
     total: scanData.total
   }};
   
-  // Fire and forget - don't wait for response
+  console.log("Payload:", payload);
+  console.log("Webhook URL:", MAKE_WEBHOOK);
+  console.log("Sending POST request...");
+  
   fetch(MAKE_WEBHOOK, {{
     method: 'POST',
     headers: {{'Content-Type': 'application/json'}},
     body: JSON.stringify(payload)
-  }}).catch(err => console.log('Make.com sent (async)'));
+  }})
+  .then(res => {{
+    console.log("Make.com response status:", res.status);
+    console.log("SUCCESS: Data sent to Make.com!");
+    console.log("=== MAKE.COM SEND END ===\n");
+  }})
+  .catch(err => {{
+    console.error("Make.com FETCH ERROR:", err);
+    console.log("=== MAKE.COM SEND END (WITH ERROR) ===\n");
+  }});
 }}
 </script>
 
 </body>
 </html>"""
-
-# ─────────────────────────────────────────────────────────────────────────
-# ENDPOINTS
-# ─────────────────────────────────────────────────────────────────────────
 
 @app.get("/", response_class=HTMLResponse)
 async def homepage():
@@ -258,7 +271,7 @@ async def homepage():
 
 @app.post("/api/scan")
 async def scan(request: Request):
-    """Scan website only - Make.com called from JavaScript"""
+    """Scan website only"""
     try:
         data = await request.json()
         name = data.get("name", "").strip()
@@ -269,13 +282,11 @@ async def scan(request: Request):
         if not all([name, email, phone, website]):
             return JSONResponse({"error": "All fields required"}, status_code=400)
         
-        # Run scan
         scan_results = run_website_scan(website)
         
         if scan_results.get("error"):
             return JSONResponse({"error": scan_results["error"]}, status_code=400)
         
-        # Return results to website
         return {
             "status": "success",
             "score": scan_results.get("score", 0),
