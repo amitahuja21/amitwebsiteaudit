@@ -1,15 +1,13 @@
 """
-The Website Auditor — FIXED
-Proper scan data capture + Results display + Real score in email
+The Website Auditor — CLEAN VERSION
+Only: Scan + Display Results + Send to Make.com
+Make.com handles: Email + Google Sheets
 """
 
 import os
 import re
-import smtplib
 import requests
 from datetime import datetime
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
@@ -28,32 +26,24 @@ LIME = "#A3E635"
 YELLOW = "#FACC15"
 WHITE = "#FFFFFF"
 
-EMAIL_ADDRESS = "amit.ahuja@thewebsiteauditor.com"
-EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD", "jmhhocpsadmftomu")
-SMTP_SERVER = "smtp.gmail.com"
-SMTP_PORT = 587
 MAKE_WEBHOOK_URL = os.getenv("MAKE_WEBHOOK_URL", "")
 
 # ─────────────────────────────────────────────────────────────────────────
-# SCAN FUNCTION - FIXED
+# SCAN FUNCTION
 # ─────────────────────────────────────────────────────────────────────────
 
 def run_website_scan(url):
-    """Run 25-point audit - FIXED VERSION"""
+    """Run 25-point audit"""
     try:
         if not url.startswith('http'):
             url = 'https://' + url
         
-        print(f"DEBUG: Scanning {url}")
-        
         response = requests.get(url, timeout=15, headers={
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'
+            'User-Agent': 'Mozilla/5.0'
         })
         
         html = response.text.lower()
-        print(f"DEBUG: Got response, HTML length: {len(html)}")
         
-        # All 25 checks
         checks = {
             "GA4": bool(re.search(r'G-[A-Z0-9]{8}', html)),
             "GTM": bool(re.search(r'GTM-[A-Z0-9]+', html)),
@@ -86,87 +76,24 @@ def run_website_scan(url):
         total = len(checks)
         score = int((passed / total) * 100) if total > 0 else 0
         
-        print(f"DEBUG: Scan complete - Passed: {passed}, Total: {total}, Score: {score}")
-        
         return {
             "checks": checks,
             "passed": passed,
             "total": total,
-            "score": score,
-            "error": None
+            "score": score
         }
     except Exception as e:
-        print(f"DEBUG: Scan error - {str(e)}")
-        return {
-            "checks": {},
-            "passed": 0,
-            "total": 25,
-            "score": 0,
-            "error": str(e)
-        }
+        return {"checks": {}, "passed": 0, "total": 25, "score": 0, "error": str(e)}
 
 # ─────────────────────────────────────────────────────────────────────────
-# EMAIL - SENDS ACTUAL SCORE
-# ─────────────────────────────────────────────────────────────────────────
-
-def send_scan_email(name, email, website, scan_results):
-    """Send email with ACTUAL scan results"""
-    try:
-        if not email:
-            return False
-        
-        score = scan_results.get("score", 0)
-        passed = scan_results.get("passed", 0)
-        total = scan_results.get("total", 25)
-        checks = scan_results.get("checks", {})
-        
-        print(f"DEBUG: Sending email to {email}, Score: {score}")
-        
-        checks_html = ""
-        for check, status in checks.items():
-            symbol = "✅" if status else "⚠️"
-            checks_html += f"<tr><td>{symbol} {check}</td><td>{'Detected' if status else 'Missing'}</td></tr>"
-        
-        html = f"""<html><body style="font-family:Arial">
-        <h2 style="color:{NAVY}">🔍 Website Audit Results</h2>
-        <p><strong>Website:</strong> {website}</p>
-        <p><strong>Name:</strong> {name}</p>
-        <p style="font-size:24px;color:{LIME};"><strong>Score: {score}%</strong></p>
-        <p><strong>Result: {passed} / {total} checks passed</strong></p>
-        <table style="width:100%;border-collapse:collapse">
-        <tr><th style="text-align:left;padding:8px;border-bottom:1px solid #ddd">Check</th><th style="text-align:left;padding:8px;border-bottom:1px solid #ddd">Status</th></tr>
-        {checks_html}
-        </table>
-        <p><strong>Next Step:</strong> Call +91 98866 50133</p>
-        </body></html>"""
-        
-        msg = MIMEMultipart("alternative")
-        msg["Subject"] = f"Your Website Audit - {website} - Score: {score}%"
-        msg["From"] = EMAIL_ADDRESS
-        msg["To"] = email
-        msg.attach(MIMEText(html, "html"))
-        
-        with smtplib.SMTP(SMTP_SERVER, SMTP_PORT) as server:
-            server.starttls()
-            server.login(EMAIL_ADDRESS, EMAIL_PASSWORD.replace(" ", ""))
-            server.send_message(msg)
-        
-        print(f"DEBUG: Email sent successfully to {email}")
-        return True
-    except Exception as e:
-        print(f"Email error: {e}")
-        return False
-
-# ─────────────────────────────────────────────────────────────────────────
-# MAKE.COM WEBHOOK
+# SEND TO MAKE.COM
 # ─────────────────────────────────────────────────────────────────────────
 
 def send_to_make(name, email, phone, website, scan_results):
-    """Send ACTUAL data to Make.com"""
+    """Send data to Make.com webhook"""
     try:
         if not MAKE_WEBHOOK_URL:
-            print("DEBUG: No Make webhook URL set")
-            return True
+            return False
         
         payload = {
             "timestamp": datetime.now().isoformat(),
@@ -176,16 +103,15 @@ def send_to_make(name, email, phone, website, scan_results):
             "website": website,
             "score": scan_results.get("score", 0),
             "passed": scan_results.get("passed", 0),
-            "total": scan_results.get("total", 25),
-            "status": "Completed"
+            "total": scan_results.get("total", 25)
         }
         
-        print(f"DEBUG: Sending to Make.com - Score: {payload['score']}")
-        requests.post(MAKE_WEBHOOK_URL, json=payload, timeout=5)
+        response = requests.post(MAKE_WEBHOOK_URL, json=payload, timeout=5)
+        print(f"Make.com response: {response.status_code}")
         return True
     except Exception as e:
         print(f"Make.com error: {e}")
-        return True
+        return False
 
 # ─────────────────────────────────────────────────────────────────────────
 # HOMEPAGE
@@ -211,7 +137,6 @@ label {{ display:block; font-weight:600; margin-bottom:0.5rem; }}
 input {{ width:100%; padding:10px; border:1px solid {NAVY}; border-radius:4px; font-size:14px; }}
 .btn {{ width:100%; padding:12px; background:{YELLOW}; color:{NAVY}; border:none; border-radius:4px; font-weight:700; cursor:pointer; font-size:16px; margin-top:1rem; }}
 .btn:disabled {{ opacity:0.6; }}
-.status {{ text-align:center; color:{LIME}; font-weight:600; margin:1rem 0; font-size:18px; }}
 .results {{ background:#f0f9ff; border:2px solid {LIME}; padding:2rem; border-radius:8px; margin:2rem 0; display:none; }}
 .results.show {{ display:block; }}
 .score-big {{ font-size:3.5rem; font-weight:800; color:{LIME}; text-align:center; }}
@@ -220,6 +145,7 @@ input {{ width:100%; padding:10px; border:1px solid {NAVY}; border-radius:4px; f
 .check {{ background:white; padding:0.8rem; border-left:4px solid {LIME}; border-radius:4px; }}
 .check.fail {{ border-left-color:#dc2626; }}
 .error {{ color:red; margin:1rem 0; font-weight:600; }}
+.status {{ text-align:center; color:{LIME}; font-weight:600; margin:1rem 0; }}
 footer {{ background:{NAVY}; color:white; text-align:center; padding:2rem; margin-top:4rem; }}
 </style>
 </head>
@@ -245,7 +171,7 @@ footer {{ background:{NAVY}; color:white; text-align:center; padding:2rem; margi
     <h2>Your Scan Results</h2>
     <div class="score-big" id="score">0%</div>
     <div class="passed-text" id="passed">0 / 25</div>
-    <p style="text-align:center;color:{LIME};font-weight:600;">✅ Email sent to your inbox</p>
+    <p style="text-align:center;color:{LIME};font-weight:600;">✅ Email will be sent shortly</p>
     <div class="checks" id="checks"></div>
   </div>
 </div>
@@ -275,20 +201,15 @@ async function scan() {{
   status.innerHTML = '⏳ Please wait...';
   
   try {{
-    console.log('Sending scan request...');
     const res = await fetch('/api/scan', {{
       method: 'POST',
       headers: {{'Content-Type': 'application/json'}},
       body: JSON.stringify({{name, email, phone, website}})
     }});
     
-    console.log('Response status:', res.status);
     const data = await res.json();
-    console.log('Response data:', data);
     
-    if (res.ok && data.score !== undefined && data.score !== null) {{
-      console.log('Scan successful! Score:', data.score);
-      
+    if (res.ok) {{
       document.getElementById('score').textContent = data.score + '%';
       document.getElementById('passed').textContent = data.passed + ' / ' + data.total;
       
@@ -303,18 +224,16 @@ async function scan() {{
       }}
       
       document.getElementById('results').classList.add('show');
+      status.innerHTML = '✅ Scan complete! Email sent.';
+      
       setTimeout(() => {{
         document.getElementById('results').scrollIntoView({{behavior: 'smooth'}});
       }}, 100);
-      
-      status.innerHTML = '✅ Scan complete! Email sent.';
     }} else {{
       error.innerHTML = 'Error: ' + (data.error || 'Scan failed');
-      console.log('Error response:', data);
     }}
   }} catch (err) {{
     error.innerHTML = 'Error: ' + err.message;
-    console.error('Fetch error:', err);
   }}
   
   btn.disabled = false;
@@ -335,7 +254,7 @@ async def homepage():
 
 @app.post("/api/scan")
 async def scan(request: Request):
-    """Scan endpoint - FIXED"""
+    """Scan and send to Make.com"""
     try:
         data = await request.json()
         name = data.get("name", "").strip()
@@ -343,34 +262,25 @@ async def scan(request: Request):
         phone = data.get("phone", "").strip()
         website = data.get("website", "").strip()
         
-        print(f"Received: name={name}, email={email}, phone={phone}, website={website}")
-        
         if not all([name, email, phone, website]):
             return JSONResponse({"error": "All fields required"}, status_code=400)
         
         # Run scan
         scan_results = run_website_scan(website)
-        print(f"Scan results: {scan_results}")
         
         if scan_results.get("error"):
             return JSONResponse({"error": scan_results["error"]}, status_code=400)
         
-        # Send email with ACTUAL data
-        send_scan_email(name, email, website, scan_results)
-        
-        # Send to Make.com with ACTUAL data
+        # Send to Make.com (ONLY - no Render email)
         send_to_make(name, email, phone, website, scan_results)
         
-        response = {
+        return {
             "status": "success",
             "score": scan_results.get("score", 0),
             "passed": scan_results.get("passed", 0),
             "total": scan_results.get("total", 25),
             "checks": scan_results.get("checks", {})
         }
-        
-        print(f"Returning response with score: {response['score']}")
-        return response
         
     except Exception as e:
         print(f"Error: {e}")
