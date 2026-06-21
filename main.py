@@ -93,6 +93,14 @@ def send_to_make(name, email, phone, website, scan_results):
         if not MAKE_WEBHOOK_URL:
             return True
         
+        # Convert checks dict to array format
+        checks_array = []
+        for check_name, check_status in scan_results.get("checks", {}).items():
+            checks_array.append({
+                "name": check_name,
+                "status": "Pass" if check_status else "Fail"
+            })
+        
         payload = {
             "timestamp": datetime.now().isoformat(),
             "name": name,
@@ -102,7 +110,7 @@ def send_to_make(name, email, phone, website, scan_results):
             "score": scan_results.get("score", 0),
             "passed": scan_results.get("passed", 0),
             "total": scan_results.get("total", 25),
-            "checks": scan_results.get("checks", {})
+            "checks": checks_array
         }
         
         # Try to send - if it fails, it fails silently
