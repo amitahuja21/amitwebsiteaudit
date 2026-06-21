@@ -4,7 +4,7 @@ Plain results display - guaranteed to work
 Contact: amit.ahuja@thewebsiteauditor.com
 """
 
-import os
+import os 
 import re
 import smtplib
 import requests
