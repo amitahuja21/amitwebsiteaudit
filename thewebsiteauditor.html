@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Website Auditor — 40-Point Website Audit & Lead Optimization</title>
+    <meta name="description" content="The Website Auditor finds what's losing you customers. Free 25-point audit. Identify tracking gaps, conversion leaks, security issues, and performance problems.">
+    <meta name="keywords" content="website audit, website optimization, conversion rate optimization, website performance, lead generation, SME services">
+    <meta name="author" content="The Website Auditor">
+    <link rel="canonical" href="https://thewebsiteauditor.com/">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://thewebsiteauditor.com/">
+    <meta property="og:title" content="The Website Auditor — Complete Website Audit & Lead Optimization">
+    <meta property="og:description" content="Free 25-point audit. Discover what's losing you customers.">
+    <meta property="og:image" content="https://thewebsiteauditor.com/og-image.png">
+    <meta property="og:site_name" content="The Website Auditor">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="The Website Auditor">
+    <meta name="twitter:description" content="Find conversion leaks, security gaps, and performance issues. Free 25-point audit.">
+    <meta name="twitter:image" content="https://thewebsiteauditor.com/og-image.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230A2540'/><circle cx='50' cy='50' r='30' fill='none' stroke='%23BFFF00' stroke-width='4'/><path d='M35 50 L48 63 L68 38' fill='none' stroke='%23BFFF00' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+    
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://www.googletagmanager.com">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "The Website Auditor",
+      "description": "Complete website audit service identifying conversion leaks, security gaps, and performance issues",
+      "url": "https://thewebsiteauditor.com",
+      "telephone": "+91-98866-50133",
+      "email": "hello@thewebsiteauditor.com",
+      "areaServed": "Worldwide",
+      "sameAs": ["https://www.facebook.com/thewebsiteauditor"]
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Website Audit Service",
+      "description": "40-point comprehensive website audit identifying conversion leaks, security gaps, performance issues, tracking gaps",
+      "provider": {"@type": "LocalBusiness", "name": "The Website Auditor"},
+      "serviceType": "Website Consulting",
+      "areaServed": "Worldwide"
+    }
+    </script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --navy: #0A2540;
+            --lime: #BFFF00;
+            --yellow: #FFD700;
+            --white: #FFFFFF;
+            --dark-text: #0A2540;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark-text);
+            line-height: 1.6;
+            background: var(--white);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* ===== HEADER ===== */
+        header {
+            background: var(--navy);
+            color: var(--white);
+            padding: 24px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+        
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--lime);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+        
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--lime), var(--yellow));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            color: var(--navy);
+            font-size: 24px;
+        }
+        
+        nav {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: color 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        nav a:hover {
+            color: var(--lime);
+        }
+        
+        .cta-btn {
+            background: var(--lime);
+            color: var(--navy);
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .cta-btn:hover {
+            background: var(--yellow);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(191, 255, 0, 0.4);
+        }
+        
+        /* ===== HERO ===== */
+        .hero {
+            background: linear-gradient(135deg, var(--navy) 0%, #0D3456 100%);
+            color: var(--white);
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+            background: rgba(191, 255, 0, 0.05);
+            border-radius: 50%;
+            z-index: 0;
+        }
+        
+        .hero .container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 800;
+            margin-bottom: 24px;
+            line-height: 1.1;
+            letter-spacing: -1px;
+        }
+        
+        .hero h1 .highlight {
+            color: var(--lime);
+            display: block;
+            font-size: 68px;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 50px;
+            color: #B0C4DE;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 500;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn-primary {
+            background: var(--lime);
+            color: var(--navy);
+            padding: 18px 48px;
+            border-radius: 10px;
+            font-weight: 800;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .btn-primary:hover {
+            background: var(--yellow);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(191, 255, 0, 0.5);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--lime);
+            padding: 18px 48px;
+            border: 3px solid var(--lime);
+            border-radius: 10px;
+            font-weight: 800;
+            text-decoration: none;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .btn-secondary:hover {
+            background: var(--lime);
+            color: var(--navy);
+        }
+        
+        /* ===== FEATURES GRID ===== */
+        .features {
+            padding: 100px 0;
+            background: #F8FBFF;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 60px;
+            color: var(--navy);
+            letter-spacing: -0.5px;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .feature-card {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(10, 37, 64, 0.08);
+            transition: all 0.3s;
+            border-top: 5px solid var(--lime);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 16px 40px rgba(191, 255, 0, 0.25);
+        }
+        
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 14px;
+            color: var(--navy);
+        }
+        
+        .feature-card p {
+            color: #666;
+            line-height: 1.8;
+            font-weight: 500;
+        }
+        
+        /* ===== AUDIT FRAMEWORK ===== */
+        .audit-framework {
+            padding: 100px 0;
+            background: var(--white);
+        }
+        
+        .pillar {
+            background: #F8FBFF;
+            border-left: 6px solid var(--lime);
+            padding: 40px;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 15px rgba(10, 37, 64, 0.05);
+        }
+        
+        .pillar h3 {
+            color: var(--navy);
+            margin-bottom: 25px;
+            font-size: 24px;
+            font-weight: 700;
+        }
+        
+        .pillar-checks {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+        }
+        
+        .check-item {
+            background: var(--white);
+            padding: 14px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border: 2px solid var(--lime);
+            color: var(--navy);
+        }
+        
+        .check-item::before {
+            content: "✓";
+            color: var(--lime);
+            font-weight: 800;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+        
+        /* ===== LEAD CAPTURE ===== */
+        .lead-capture {
+            background: linear-gradient(135deg, var(--navy) 0%, #0D3456 100%);
+            color: var(--white);
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .lead-capture::before {
+            content: "";
+            position: absolute;
+            top: -50px;
+            left: -100px;
+            width: 300px;
+            height: 300px;
+            background: rgba(191, 255, 0, 0.08);
+            border-radius: 50%;
+            z-index: 0;
+        }
+        
+        .lead-capture .container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .lead-capture h2 {
+            font-size: 44px;
+            font-weight: 800;
+            margin-bottom: 40px;
+            text-align: center;
+            letter-spacing: -0.5px;
+        }
+        
+        .lead-capture h2 .highlight {
+            color: var(--lime);
+        }
+        
+        .form-container {
+            max-width: 550px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.12);
+            padding: 50px;
+            border-radius: 14px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(191, 255, 0, 0.3);
+        }
+        
+        .free-badge {
+            background: var(--lime);
+            color: var(--navy);
+            display: inline-block;
+            padding: 10px 24px;
+            border-radius: 25px;
+            font-weight: 800;
+            margin-bottom: 25px;
+            text-align: center;
+            width: 100%;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .form-group {
+            margin-bottom: 22px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 700;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 8px;
+            background: rgba(255,255,255,0.97);
+            color: var(--navy);
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--lime);
+            background: var(--white);
+            box-shadow: 0 0 0 4px rgba(191, 255, 0, 0.15);
+        }
+        
+        .form-submit {
+            width: 100%;
+            padding: 16px;
+            background: var(--lime);
+            color: var(--navy);
+            border: none;
+            border-radius: 8px;
+            font-weight: 800;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .form-submit:hover {
+            background: var(--yellow);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(191, 255, 0, 0.4);
+        }
+        
+        /* ===== PRICING ===== */
+        .pricing {
+            padding: 100px 0;
+            background: #F8FBFF;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .pricing-card {
+            background: var(--white);
+            padding: 50px;
+            border-radius: 14px;
+            box-shadow: 0 4px 25px rgba(10, 37, 64, 0.08);
+            text-align: center;
+            border: 4px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .pricing-card.featured {
+            border-color: var(--lime);
+            transform: scale(1.08);
+            background: linear-gradient(135deg, var(--white) 0%, #F8FBFF 100%);
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 50px rgba(191, 255, 0, 0.3);
+        }
+        
+        .pricing-card h3 {
+            font-size: 26px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            color: var(--navy);
+        }
+        
+        .price {
+            font-size: 52px;
+            color: var(--lime);
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+        
+        .price-period {
+            color: #999;
+            font-size: 14px;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+        
+        .pricing-features {
+            text-align: left;
+            margin: 35px 0;
+        }
+        
+        .pricing-features li {
+            list-style: none;
+            padding: 12px 0;
+            color: #555;
+            border-bottom: 1px solid #E8E8E8;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 600;
+        }
+        
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+        
+        .pricing-features li:before {
+            content: "✓";
+            color: var(--lime);
+            font-weight: 800;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+        
+        .pricing-card .btn-primary {
+            width: 100%;
+            margin-top: 20px;
+        }
+        
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--navy);
+            color: var(--white);
+            padding: 50px 0 30px;
+        }
+        
+        footer .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        footer h4 {
+            margin-bottom: 18px;
+            color: var(--lime);
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+        }
+        
+        footer p {
+            color: #B0C4DE;
+            line-height: 1.8;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+        
+        footer a {
+            color: #B0C4DE;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+            transition: color 0.3s;
+            font-weight: 600;
+        }
+        
+        footer a:hover {
+            color: var(--lime);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid #1F3A5F;
+            padding-top: 30px;
+            text-align: center;
+            color: #B0C4DE;
+        }
+        
+        .footer-bottom p {
+            margin: 8px 0;
+            font-size: 14px;
+        }
+        
+        /* ===== MOBILE ===== */
+        @media (max-width: 768px) {
+            nav {
+                gap: 15px;
+                font-size: 12px;
+            }
+            
+            nav a {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 40px;
+            }
+            
+            .hero h1 .highlight {
+                font-size: 48px;
+            }
+            
+            .hero p {
+                font-size: 16px;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .btn-primary, .btn-secondary {
+                width: 100%;
+            }
+            
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+            
+            .section-title {
+                font-size: 36px;
+            }
+            
+            .form-container {
+                padding: 30px;
+            }
+        }
+        
+        /* ===== ACCESSIBILITY ===== */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+        
+        a:focus, button:focus {
+            outline: 3px solid var(--lime);
+            outline-offset: 2px;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <a href="#" class="logo">
+                <div class="logo-icon">🔍✓</div>
+                <span>The Website Auditor</span>
+            </a>
+            <nav>
+                <a href="#features">Services</a>
+                <a href="#audit">Audit</a>
+                <a href="#pricing">Pricing</a>
+                <button class="cta-btn" onclick="document.getElementById('lead-form').scrollIntoView({ behavior: 'smooth' })">Free Audit</button>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <h1>Is Your Website <span class="highlight">Losing You Customers?</span></h1>
+            <p>Most websites have hidden gaps in tracking, forms, security, and speed. We audit 40+ parameters to find them. Then we fix them.</p>
+            <div class="hero-buttons">
+                <button class="btn-primary" onclick="document.getElementById('lead-form').scrollIntoView({ behavior: 'smooth' })">⚡ Get Free 25-Point Audit</button>
+                <a href="#audit" class="btn-secondary">Learn More →</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Features -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Why Websites Leak Leads</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Tracking Blind Spots</h3>
+                    <p>Missing GA4, GTM, Clarity? You can't optimize what you can't measure. We detect every gap.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Speed Killers</h3>
+                    <p>Slow pages lose 40% of visitors. We audit load times, Core Web Vitals, and optimization.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💬</div>
+                    <h3>Form Failures</h3>
+                    <p>Forms, WhatsApp, live chat — we audit every channel. Most sites miss 60% of lead capture.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Trust Gaps</h3>
+                    <p>SSL, privacy policy, security headers — missing one signal kills conversions cold.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3>SEO Blind</h3>
+                    <p>Schema, Open Graph, mobile responsive, AI indexing — we verify all readiness signals.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Retargeting Failures</h3>
+                    <p>Meta Pixel, Google Ads, LinkedIn — we verify pixels fire correctly. Most don't.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Audit Framework -->
+    <section id="audit" class="audit-framework">
+        <div class="container">
+            <h2 class="section-title">The 40-Point Audit Framework</h2>
+            
+            <div class="pillar">
+                <h3>📊 Traffic Intelligence & Measurement (6 checks)</h3>
+                <div class="pillar-checks">
+                    <div class="check-item">GA4 Installed</div>
+                    <div class="check-item">Google Tag Manager</div>
+                    <div class="check-item">Microsoft Clarity</div>
+                    <div class="check-item">Hotjar Tracking</div>
+                    <div class="check-item">Event Tracking</div>
+                    <div class="check-item">Visitor Monitoring</div>
+                </div>
+            </div>
+            
+            <div class="pillar">
+                <h3>🎯 Retargeting & Remarketing (5 checks)</h3>
+                <div class="pillar-checks">
+                    <div class="check-item">Meta Pixel</div>
+                    <div class="check-item">Google Ads Conversion</div>
+                    <div class="check-item">LinkedIn Insight Tag</div>
+                    <div class="check-item">Pinterest Pixel</div>
+                    <div class="check-item">TikTok Pixel</div>
+                </div>
+            </div>
+            
+            <div class="pillar">
+                <h3>💬 Lead Capture & Conversion (11 checks)</h3>
+                <div class="pillar-checks">
+                    <div class="check-item">WhatsApp Button</div>
+                    <div class="check-item">Live Chat</div>
+                    <div class="check-item">Contact Form</div>
+                    <div class="check-item">Exit Intent Popup</div>
+                    <div class="check-item">Click-to-Call</div>
+                    <div class="check-item">Meeting Scheduler</div>
+                    <div class="check-item">Form Optimization</div>
+                    <div class="check-item">CRM Integration</div>
+                    <div class="check-item">Lead Scoring</div>
+                    <div class="check-item">Landing Pages</div>
+                    <div class="check-item">Telegram Bot</div>
+                </div>
+            </div>
+            
+            <div class="pillar">
+                <h3>🔒 Trust & Security (8 checks)</h3>
+                <div class="pillar-checks">
+                    <div class="check-item">SSL Certificate</div>
+                    <div class="check-item">Privacy Policy</div>
+                    <div class="check-item">Reviews & Proof</div>
+                    <div class="check-item">Trust Badges</div>
+                    <div class="check-item">Terms of Service</div>
+                    <div class="check-item">Money-Back Guarantee</div>
+                    <div class="check-item">About Page</div>
+                    <div class="check-item">Security Headers</div>
+                </div>
+            </div>
+            
+            <div class="pillar">
+                <h3>🚀 Discovery, SEO & AI Readiness (19 checks)</h3>
+                <div class="pillar-checks">
+                    <div class="check-item">Meta Description</div>
+                    <div class="check-item">H1 Structure</div>
+                    <div class="check-item">Schema Markup</div>
+                    <div class="check-item">Open Graph Tags</div>
+                    <div class="check-item">Sitemap.xml</div>
+                    <div class="check-item">Mobile Responsive</div>
+                    <div class="check-item">Favicon</div>
+                    <div class="check-item">Canonical URLs</div>
+                    <div class="check-item">llms.txt (AI)</div>
+                    <div class="check-item">Core Web Vitals</div>
+                    <div class="check-item">Image Optimization</div>
+                    <div class="check-item">Internal Links</div>
+                    <div class="check-item">Keyword Optimization</div>
+                    <div class="check-item">FAQ Schema</div>
+                    <div class="check-item">Robots.txt</div>
+                    <div class="check-item">Breadcrumbs</div>
+                    <div class="check-item">Alt Text</div>
+                    <div class="check-item">Mobile Testing</div>
+                    <div class="check-item">Speed Score 90+</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Lead Capture -->
+    <section class="lead-capture">
+        <div class="container">
+            <h2>Get Your <span class="highlight">Free 25-Point Audit</span></h2>
+            <div class="form-container">
+                <div class="free-badge">🎁 Completely Free — No Credit Card</div>
+                <form id="lead-form" onsubmit="handleFormSubmit(event)">
+                    <div class="form-group">
+                        <label for="name">Your Name *</label>
+                        <input type="text" id="name" name="name" required placeholder="John Doe">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required placeholder="john@company.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">WhatsApp Number *</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="+91 98866 50133">
+                    </div>
+                    <div class="form-group">
+                        <label for="website">Your Website *</label>
+                        <input type="url" id="website" name="website" required placeholder="https://example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">About Your Business</label>
+                        <textarea id="message" name="message" rows="3" placeholder="e.g., We're a digital marketing agency..."></textarea>
+                    </div>
+                    <button type="submit" class="form-submit">⚡ Get Free Audit Now</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Pricing -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <h2 class="section-title">Simple Pricing. Real Results.</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Free Audit</h3>
+                    <div class="price">$0</div>
+                    <div class="price-period">One-time</div>
+                    <ul class="pricing-features">
+                        <li>25-Point Audit</li>
+                        <li>Email Report</li>
+                        <li>Basic Recommendations</li>
+                        <li>No Obligation</li>
+                    </ul>
+                    <button class="btn-primary" onclick="document.getElementById('lead-form').scrollIntoView({ behavior: 'smooth' })">Start Here</button>
+                </div>
+                
+                <div class="pricing-card featured">
+                    <h3>Pro Audit</h3>
+                    <div class="price">$499</div>
+                    <div class="price-period">One-time</div>
+                    <ul class="pricing-features">
+                        <li>Full 40-Point Audit</li>
+                        <li>Video Report</li>
+                        <li>Implementation Plan</li>
+                        <li>60-Day Support</li>
+                        <li>Fix Guidance</li>
+                    </ul>
+                    <button class="btn-primary">Get Pro Audit</button>
+                </div>
+                
+                <div class="pricing-card">
+                    <h3>Monthly Service</h3>
+                    <div class="price">$999</div>
+                    <div class="price-period">Per Month</div>
+                    <ul class="pricing-features">
+                        <li>40-Point Audits</li>
+                        <li>Monthly Reports</li>
+                        <li>Continuous Monitoring</li>
+                        <li>Unlimited Support</li>
+                        <li>Direct Help</li>
+                    </ul>
+                    <button class="btn-primary">Start Subscription</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div>
+                <h4>About</h4>
+                <p>The Website Auditor finds what's losing you customers. Free 25-point audit identifying conversion leaks, security gaps, and performance issues.</p>
+            </div>
+            <div>
+                <h4>Services</h4>
+                <a href="#features">Services</a>
+                <a href="#audit">Audit Framework</a>
+                <a href="#pricing">Pricing</a>
+            </div>
+            <div>
+                <h4>Contact</h4>
+                <a href="mailto:hello@thewebsiteauditor.com">hello@thewebsiteauditor.com</a>
+                <a href="https://wa.me/919886650133">WhatsApp: +91 98866 50133</a>
+                <a href="tel:+919886650133">Phone: +91 98866 50133</a>
+            </div>
+            <div>
+                <h4>Legal</h4>
+                <a href="#privacy">Privacy Policy</a>
+                <a href="#terms">Terms of Service</a>
+                <a href="#accessibility">Accessibility</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 The Website Auditor. All rights reserved.</p>
+            <p>🌍 Serving SMEs Worldwide | Founded in Bangalore, India</p>
+        </div>
+    </footer>
+    
+    <!-- Form Handler -->
+    <script>
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const website = document.getElementById('website').value;
+            
+            alert(`✅ Thank you, ${name}!\n\nYour free 25-point audit is on its way to ${email}\n\nExpect results in 1-2 hours.\n\nWe'll reach out via WhatsApp too: ${phone}`);
+            
+            console.log({name, email, phone, website});
+            event.target.reset();
+        }
+    </script>
+    
+    <!-- GA4 Placeholder -->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GTM-XXXXXXX');
+        gtag('event', 'page_view');
+    </script>
+    
+    <!-- Meta Pixel Placeholder -->
+    <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', 'YOUR_PIXEL_ID');
+        fbq('track', 'PageView');
+    </script>
+</body>
+</html>
